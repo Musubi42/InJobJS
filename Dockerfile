@@ -30,19 +30,19 @@ CMD ["npm", "start"]
 
 ## Production ##################################################################
 # Also define a production target which doesn't use devDeps
-FROM base as production
-WORKDIR /home/node/app
+# FROM base as production
+# WORKDIR /home/node/app
 
 # Do the chown so that the node_modules/.cache can be updated
-RUN chown -R node:node /home/node
+# RUN chown -R node:node /home/node
 
-COPY --chown=node:node --from=development /home/node/app/node_modules /home/node/app/node_modules
+# COPY --chown=node:node --from=development /home/node/app/node_modules /home/node/app/node_modules
 # Build the Docusaurus app
-RUN npm run build
+# RUN npm run build
 
 ## Deploy ######################################################################
 # Use a stable nginx image
-FROM nginx:stable-alpine as deploy
-WORKDIR /home/node/app
+# FROM nginx:stable-alpine as deploy
+# WORKDIR /home/node/app
 # Copy what we've installed/built from production
-COPY --chown=node:node --from=production /home/node/app/build /usr/share/nginx/html/
+# COPY --chown=node:node --from=production /home/node/app/build /usr/share/nginx/html/
