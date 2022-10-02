@@ -34,7 +34,7 @@ jobs:
       
     - name: Test
       run: npm test --if-present
-    
+
     - uses: mr-smithers-excellent/docker-build-push@v5
     # --target development -t InjobDocs:latest . those params doesnt work with command Build
     # I have to find another way to passa param
@@ -45,6 +45,6 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Now I need to use this image to deploy the new version
-      - name: Move the Build to /var/www/conrado/portfolio/front
-        run: bash /home/debian/.local/bin/CD_InJob_Docusaurus.sh
+    # Now I need to use this image to deploy the new version
+    - name: Move the Build to /var/www/conrado/portfolio/front
+      run: bash /home/debian/.local/bin/CD_InJob_Docusaurus.sh
