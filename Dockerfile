@@ -33,9 +33,6 @@ CMD ["npm", "start"]
 FROM base as production
 WORKDIR /home/node/app
 
-# Do the chown so that the node_modules/.cache can be updated
-RUN chown -R node:node /home/node
-
 COPY --chown=node:node --from=development /home/node/app/node_modules /home/node/app/node_modules
 # Build the Docusaurus app
 RUN npm run build
