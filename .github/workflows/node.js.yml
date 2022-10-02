@@ -40,6 +40,7 @@ jobs:
     # I have to find another way to passa param
       name: Build && push Docker image
       with:
+        tags: latest
         image: musubi42/injob_doc
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
