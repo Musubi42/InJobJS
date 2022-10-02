@@ -36,9 +36,15 @@ jobs:
       run: npm test --if-present
     
     - uses: mr-smithers-excellent/docker-build-push@v5
-      name: Build --target development -t InjobDocs:latest . && push Docker image
+    # --target development -t InjobDocs:latest . those params doesnt work with command Build
+    # I have to find another way to passa param
+      name: Build && push Docker image
       with:
-        image: musubi42/test
+        image: musubi42/injob_doc
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Now I need to use this image to deploy the new version
+      - name: Move the Build to /var/www/conrado/portfolio/front
+        run: bash /home/debian/.local/bin/CD_InJob_Docusaurus.sh
