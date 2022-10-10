@@ -47,12 +47,12 @@ jobs:
     #     password: ${{ secrets.DOCKER_PASSWORD }}
 
     # jde
-    - name: Move the code from the action-runner to the InJobDoc
-      run: bash /home/debian/.local/bin/MV_InJob_Docs.sh
+    - name: Move the code from the action-runner to the InJobDocJS Folder
+      run: bash /home/debian/.local/bin/InJob_CD_MV_Docs.sh
 
     - name: Build the docker image
-      run: bash /home/debian/.local/bin/Build_InJob_Docs.sh
+      run: bash /home/debian/.local/bin/InJob_CD_Build_Docs.sh
 
     # Now I need to use this image to deploy the new version
     - name: Start the container from the newly created image, at the earlier step
-      run: bash /home/debian/.local/bin/Start_InJob_Docs.sh
+      run: bash /home/debian/.local/bin/InJob_CD_Up_Docs.sh
